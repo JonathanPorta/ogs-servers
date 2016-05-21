@@ -3,19 +3,23 @@ kind: ReplicationController
 metadata:
   name: hurtworld-hurtcoast
   labels:
-    name: hurtworld-hurtcoast
+    app: hurtworld-hurtcoast
     state: serving
 spec:
   replicas: 1
   selector:
-    name: hurtworld-hurtcoast
+    app: hurtworld-hurtcoast
   template:
     metadata:
       labels:
-        name: hurtworld-hurtcoast
+        app: hurtworld-hurtcoast
     spec:
+      volumes:
+        - name: logs
+          hostPath:
+            path: /tmp/
       containers:
-      - name: hurtworld-hurtcoast-container
+      - name: hurtworld-hurtcoast
         image: quay.io/jonathanporta/ogs-servers-hurtworld-hurtcoast
         imagePullPolicy: Always
         ports:
@@ -23,6 +27,9 @@ spec:
           protocol: UDP
         - containerPort: 12881
           protocol: UDP
+        volumeMounts:
+          - name: logs
+            mountPath: /logs/
       dnsPolicy: ClusterFirst
       restartPolicy: Always
 
