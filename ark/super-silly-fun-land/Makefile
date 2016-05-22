@@ -1,6 +1,6 @@
 REPO = quay.io/jonathanporta
 IMAGE = ogs-servers-ark-super-silly-fun-land
-
+PERSIST_DIR = $(shell pwd)/persist
 all: build run
 
 build:
