@@ -6,31 +6,41 @@ metadata:
     state: serving
   namespace: default
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
-  - port: 27015
+  - name: client-udp
+    port: 27015
     targetPort: 27015
     protocol: UDP
-  - port: 27015
-    targetPort: 27015
-    protocol: TCP
-  - port: 7777
+  # - name: client-tcp
+  #   port: 27015
+  #   targetPort: 27015
+  #   protocol: TCP
+  - name: 7777-udp
+    port: 7777
     targetPort: 7777
     protocol: UDP
-  - port: 7777
-    targetPort: 7777
-    protocol: TCP
-  - port: 7778
+  # - name: 7777-tcp
+  #   port: 7777
+  #   targetPort: 7777
+  #   protocol: TCP
+  - name: 7778-udp
+    port: 7778
     targetPort: 7778
     protocol: UDP
-  - port: 7778
-    targetPort: 7778
-    protocol: TCP
-  - port: 32330
+  # - name: 7778-tcp
+  #   port: 7778
+  #   targetPort: 7778
+  #   protocol: TCP
+  - name: 32330-udp
+    port: 32330
     targetPort: 32330
     protocol: UDP
-  - port: 32330
-    targetPort: 32330
-    protocol: TCP
+  # - name: 32330-tcp
+  #   port: 32330
+  #   targetPort: 32330
+  #   protocol: TCP
+  externalIPs:
+  - 45.55.185.119
   selector:
     app: ark-super-silly-fun-land
