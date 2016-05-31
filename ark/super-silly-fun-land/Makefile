@@ -1,6 +1,6 @@
 REPO = quay.io/jonathanporta
 IMAGE = ogs-servers-ark-super-silly-fun-land
-
+PERSIST_DIR = $(shell pwd)/persist
 all: build run
 
 build:
@@ -29,3 +29,15 @@ connect:
 
 push:
 	docker push $(REPO)/$(IMAGE):latest
+
+deploy: _update_svc _update_rc
+
+_create:
+	kubectl create -f ./deployment/service.yml
+	kubectl create -f ./deployment/rc.yml
+
+_update_svc:
+	kubectl apply -f ./deployment/service.yml
+
+_update_rc:
+	kubectl apply -f ./deployment/rc.yml
