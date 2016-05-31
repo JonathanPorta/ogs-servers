@@ -3,7 +3,7 @@
 APP="ogs-servers-hurtworld-hurtcoast"
 PROJECT="open-gaming"
 ZONE="us-central1-a"
-CLUSTER="us-central-cluster"
+CLUSTER="cluster-2"
 
 REPO="quay.io/jonathanporta"
 IMAGE="ogs-servers-hurtworld-hurtcoast"
@@ -21,5 +21,5 @@ kubectl create -f ./service.yml
 
 kubectl create -f ./rc.yml
 
-gcloud compute firewall-rules create hurtworld-hurtcoast-host --allow=udp:12871
-gcloud compute firewall-rules create hurtworld-hurtcoast-query --allow=udp:12881
+gcloud compute firewall-rules create hurtworld-hurtcoast-host --allow=udp:30358
+gcloud compute firewall-rules create hurtworld-hurtcoast-query --allow=udp:30846
